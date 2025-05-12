@@ -8,3 +8,13 @@ let invaderSpeed = 1;
 let score = 0;
 let bullets = [];
 let invaders = [];
+
+document.addEventListener("keydown", (e) => {
+    if (e.code === "ArrowLeft" && player.offsetLeft > 0) {
+        player.style.left = player.offsetLeft - playerSpeed + "px";
+    }
+    if (e.code === "ArrowRight" && player.offsetLeft < game.clientWidth - player.offsetWidth) {
+        player.style.left = player.offsetLeft + playerSpeed + "px";
+    }
+    if (e.code === "Space") shoot();
+});
