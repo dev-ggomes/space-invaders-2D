@@ -38,6 +38,13 @@ body{
     background-color: lime;
 }
 
+.bullet{
+    position: absolute;
+    width: 4px;
+    height: 10px;
+    background: red;
+}
+
 .logo-png{
     position: fixed;
     top: 50px;
