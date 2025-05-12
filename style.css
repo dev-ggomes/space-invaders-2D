@@ -13,6 +13,19 @@
 
 body{
     background-color: var(--color-dark1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#game{
+    position: relative;
+    width: 600px;
+    height: 400px;
+    background-color: var(--color-dark2);
+    overflow: hidden;
+    border: 2px solid var(--color-white);
 }
 
 .logo-png{
