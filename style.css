@@ -28,6 +28,16 @@ body{
     border: 2px solid var(--color-white);
 }
 
+#player{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 20px;
+    background-color: lime;
+}
+
 .logo-png{
     position: fixed;
     top: 50px;
