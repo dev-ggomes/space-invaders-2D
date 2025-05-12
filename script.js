@@ -3,6 +3,8 @@ const player = document.getElementById("player");
 const scoreDisplay = document.getElementById("score");
 
 let playerSpeed = 5;
+let moveDirection = null; // "left" ou "right"
+let moveSpeed = 5;
 let bulletSpeed = 8;
 let invaderSpeed = 1;
 let score = 0;
@@ -10,14 +12,22 @@ let bullets = [];
 let invaders = [];
 
 document.addEventListener("keydown", (e) => {
-    if (e.code === "ArrowLeft" && player.offsetLeft > 0) {
-        player.style.left = player.offsetLeft - playerSpeed + "px";
-    }
-    if (e.code === "ArrowRight" && player.offsetLeft < game.clientWidth - player.offsetWidth) {
-        player.style.left = player.offsetLeft + playerSpeed + "px";
-    }
+    if (e.code === "ArrowLeft") moveDirection = "left";
+    if (e.code === "ArrowRight") moveDirection = "right";
+});
+
+document.addEventListener("keydown", (e) => {
     if (e.code === "Space") shoot();
 });
+  
+document.addEventListener("keyup", (e) => {
+    if (
+      (e.code === "ArrowLeft" && moveDirection === "left") ||
+      (e.code === "ArrowRight" && moveDirection === "right")
+    ) {
+      moveDirection = null;
+    }
+});  
 
 function shoot() {
     const bullet = document.createElement("div");
@@ -59,6 +69,20 @@ function createInvaders() {
     }
 }
 
+function movePlayer() {
+    const left = player.offsetLeft;
+  
+    if (moveDirection === "left" && left > 0) {
+      player.style.left = left - moveSpeed + "px";
+    }
+  
+    if (moveDirection === "right" && left < game.clientWidth - player.clientWidth) {
+      player.style.left = left + moveSpeed + "px";
+    }
+  
+    requestAnimationFrame(movePlayer);
+}  
+
 function updateGame() {
     // Mover balas
     moveBullets();
@@ -89,4 +113,5 @@ function updateGame() {
 }
 
 createInvaders();
+movePlayer();
 updateGame();
