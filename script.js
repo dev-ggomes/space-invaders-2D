@@ -38,3 +38,41 @@ function createInvaders() {
         invaders.push(invader);
     }
 }
+
+function updateGame() {
+    // Mover balas
+    bullets.forEach((bullet, index) => {
+        bullet.style.bottom = bullet.offsetTop + bulletSpeed + "px";
+        if(bullet.offsetTop < 0) {
+            bullet.remove();
+            bullets.splice(index, 1);
+        }
+    });
+
+    // Mover invasores
+    invaders.forEach((invader, i) => {
+        invader.style.top = invader.offsetTop + invaderSpeed + "px";
+
+        // Verificar colisão
+        bullets.forEach((bullet, j) => {
+            if (
+                bullet.offsetLeft >= invader.offsetLeft &&
+                bullet.offsetLeft <= invader.offsetLeft + invader.offsetWidth &&
+                bullet.offsetTop <= invader.offsetTop + invader.offsetHeight &&
+                bullet.offsetTop >= invader.offsetTop
+            ) {
+                invader.remove();
+                bullet.remove();
+                invaders.splice(i, 1);
+                bullets.splice(j, 1);
+                score += 10;
+                scoreDisplay.textContent = score;
+            }
+        });
+    });
+
+    requestAnimationFrame(updateGame);
+}
+
+createInvaders();
+updateGame();
