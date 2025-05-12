@@ -52,6 +52,14 @@ body{
     background-color: var(--color-white);
 }
 
+#score{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: var(--color-white);
+    /* font-family: monospace; */
+}
+
 .logo-png{
     position: fixed;
     top: 50px;
