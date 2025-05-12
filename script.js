@@ -70,18 +70,20 @@ function createInvaders() {
 }
 
 function movePlayer() {
-    const left = player.offsetLeft;
-  
-    if (moveDirection === "left" && left > 0) {
-      player.style.left = left - moveSpeed + "px";
+    const playerRect = player.getBoundingClientRect();
+    const gameRect = game.getBoundingClientRect();
+
+    if (moveDirection === "left" && playerRect.left > gameRect.left) {
+        player.style.left = player.offsetLeft - moveSpeed + "px";
     }
-  
-    if (moveDirection === "right" && left < game.clientWidth - player.clientWidth) {
-      player.style.left = left + moveSpeed + "px";
+
+    if (moveDirection === "right" && playerRect.right < gameRect.right) {
+        player.style.left = player.offsetLeft + moveSpeed + "px";
     }
-  
+
     requestAnimationFrame(movePlayer);
-}  
+}
+
 
 function updateGame() {
     // Mover balas
