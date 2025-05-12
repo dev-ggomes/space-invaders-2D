@@ -18,3 +18,23 @@ document.addEventListener("keydown", (e) => {
     }
     if (e.code === "Space") shoot();
 });
+
+function shoot() {
+    const bullet = document.createElement("div");
+    bullet.classList.add("bullet");
+    bullet.style.left = player.offsetLeft + player.offsetWidth / 2 - 2 + "px";
+    bullet.style.bottom = "30px";
+    game.appendChild(bullet);
+    bullets.push(bullet);
+}
+
+function createInvaders() {
+    for (let i = 0; i < 5; i++) {
+        const invader = document.createElement("div");
+        invader.classList.add("invader");
+        invader.style.top = "10px";
+        invader.style.left = 60 + i * 100 + "px";
+        game.appendChild(invader);
+        invaders.push(invader);
+    }
+}
