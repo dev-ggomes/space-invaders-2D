@@ -11,6 +11,10 @@
     font-family: 'Gill Sans MT';
 }
 
+body{
+    background-color: var(--color-dark1);
+}
+
 .logo-png{
     position: fixed;
     top: 50px;
