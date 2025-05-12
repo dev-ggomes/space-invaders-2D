@@ -45,6 +45,13 @@ body{
     background: red;
 }
 
+.invader{
+    position: absolute;
+    width: 30px;
+    height: 20px;
+    background-color: var(--color-white);
+}
+
 .logo-png{
     position: fixed;
     top: 50px;
