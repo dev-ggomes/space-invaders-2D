@@ -22,10 +22,30 @@ document.addEventListener("keydown", (e) => {
 function shoot() {
     const bullet = document.createElement("div");
     bullet.classList.add("bullet");
-    bullet.style.left = player.offsetLeft + player.offsetWidth / 2 - 2 + "px";
+  
+    const initialBottom = player.offsetTop + player.offsetHeight;
+    const bulletLeft = player.offsetLeft + player.offsetWidth / 2 - 2;
+  
+    bullet.style.left = bulletLeft + "px";
     bullet.style.bottom = "30px";
+    bullet.dataset.bottom = 30; // guardar a posição inicial em px
+  
     game.appendChild(bullet);
     bullets.push(bullet);
+}
+
+function moveBullets() {
+    bullets.forEach((bullet, index) => {
+      let bottom = parseInt(bullet.dataset.bottom);
+      bottom += bulletSpeed;
+      bullet.dataset.bottom = bottom;
+      bullet.style.bottom = bottom + "px";
+  
+      if (bottom > game.clientHeight) {
+        bullet.remove();
+        bullets.splice(index, 1);
+      }
+    });
 }
 
 function createInvaders() {
@@ -41,13 +61,7 @@ function createInvaders() {
 
 function updateGame() {
     // Mover balas
-    bullets.forEach((bullet, index) => {
-        bullet.style.bottom = bullet.offsetTop + bulletSpeed + "px";
-        if(bullet.offsetTop < 0) {
-            bullet.remove();
-            bullets.splice(index, 1);
-        }
-    });
+    moveBullets();
 
     // Mover invasores
     invaders.forEach((invader, i) => {
