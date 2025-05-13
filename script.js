@@ -23,12 +23,12 @@ const starContainer = document.querySelector('.stars');
 }
 
 document.addEventListener("keydown", (e) => {
-    if (e.code === "ArrowLeft") moveDirection = "left";
-    if (e.code === "ArrowRight") moveDirection = "right";
+    if (e.code === "ArrowLeft" || e.code === "KeyA") moveDirection = "left";
+    if (e.code === "ArrowRight" || e.code === "KeyD") moveDirection = "right";
 });
 
 document.addEventListener("keydown", (e) => {
-    if (e.code === "Space") shoot();
+    if (e.code === "ArrowUp" || e.code === "Space" || e.code === "KeyW") shoot();
 });
   
 document.addEventListener("keyup", (e) => {
