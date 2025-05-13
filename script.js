@@ -62,9 +62,10 @@ function spawnInvader() {
     const invader = document.createElement("div");
     invader.classList.add("invader");
 
-    const randomLeft = Math.floor(Math.random() * (game.clientWidth - 30)); // 30 = largura do invader
+    const randomLeft = Math.floor(Math.random() * (game.clientWidth - 40)); // 30 = largura do invader
     invader.style.left = randomLeft + "px";
     invader.style.top = "0px";
+    invader.textContent = "👾"
 
     game.appendChild(invader);
     invaders.push(invader);

@@ -48,9 +48,8 @@ body{
 
 .invader{
     position: absolute;
-    width: 30px;
-    height: 20px;
-    background-color: var(--color-white);
+    /* background-color: var(--color-white); */
+    font-size: 32px;
 }
 
 #score{
