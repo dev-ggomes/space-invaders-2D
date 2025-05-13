@@ -58,15 +58,16 @@ function moveBullets() {
     });
 }
 
-function createInvaders() {
-    for (let i = 0; i < 5; i++) {
-        const invader = document.createElement("div");
-        invader.classList.add("invader");
-        invader.style.top = "10px";
-        invader.style.left = 60 + i * 100 + "px";
-        game.appendChild(invader);
-        invaders.push(invader);
-    }
+function spawnInvader() {
+    const invader = document.createElement("div");
+    invader.classList.add("invader");
+
+    const randomLeft = Math.floor(Math.random() * (game.clientWidth - 30)); // 30 = largura do invader
+    invader.style.left = randomLeft + "px";
+    invader.style.top = "0px";
+
+    game.appendChild(invader);
+    invaders.push(invader);
 }
 
 function movePlayer() {
@@ -84,16 +85,22 @@ function movePlayer() {
     requestAnimationFrame(movePlayer);
 }
 
-
 function updateGame() {
     // Mover balas
     moveBullets();
 
-    // Mover invasores
+    // Mover e verificar colisões dos invasores
     invaders.forEach((invader, i) => {
         invader.style.top = invader.offsetTop + invaderSpeed + "px";
 
-        // Verificar colisão
+        // Remover invasor se sair do jogo
+        if (invader.offsetTop > game.clientHeight) {
+            invader.remove();
+            invaders.splice(i, 1);
+            return;
+        }
+
+        // Colisão com balas
         bullets.forEach((bullet, j) => {
             if (
                 bullet.offsetLeft >= invader.offsetLeft &&
@@ -114,6 +121,7 @@ function updateGame() {
     requestAnimationFrame(updateGame);
 }
 
-createInvaders();
 movePlayer();
+spawnInvader();
+setInterval(spawnInvader, 1000);
 updateGame();
