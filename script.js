@@ -32,14 +32,18 @@ document.addEventListener("keyup", (e) => {
 function shoot() {
     const bullet = document.createElement("div");
     bullet.classList.add("bullet");
-  
-    const initialBottom = player.offsetTop + player.offsetHeight;
-    const bulletLeft = player.offsetLeft + player.offsetWidth / 2 - 2;
-  
-    bullet.style.left = bulletLeft + "px";
-    bullet.style.bottom = "30px";
-    bullet.dataset.bottom = 30; // guardar a posição inicial em px
-  
+
+    // Usar posição real relativa ao jogo
+    const playerRect = player.getBoundingClientRect();
+    const gameRect = game.getBoundingClientRect();
+
+    const bulletLeft = playerRect.left + playerRect.width / 2 - gameRect.left - 2; // centro da nave
+    const bulletBottom = game.clientHeight - (playerRect.top - gameRect.top); // altura relativa ao fundo do #game
+
+    bullet.style.left = `${bulletLeft}px`;
+    bullet.style.bottom = `${bulletBottom}px`;
+    bullet.dataset.bottom = bulletBottom;
+
     game.appendChild(bullet);
     bullets.push(bullet);
 }
