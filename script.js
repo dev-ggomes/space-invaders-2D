@@ -11,6 +11,17 @@ let score = 0;
 let bullets = [];
 let invaders = [];
 
+const starContainer = document.querySelector('.stars');
+  for (let i = 0; i < 100; i++) {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    star.style.left = Math.random() * 100 + 'vw';
+    star.style.top = Math.random() * -100 + 'vh';
+    star.style.animationDuration = 1 + Math.random() * 2 + 's';
+    star.style.opacity = Math.random();
+    starContainer.appendChild(star);
+}
+
 document.addEventListener("keydown", (e) => {
     if (e.code === "ArrowLeft") moveDirection = "left";
     if (e.code === "ArrowRight") moveDirection = "right";

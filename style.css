@@ -3,6 +3,7 @@
     --color-dark2: #444;
     --color-white: #fff;
     --color-purple: #a259ff;
+    --color-black: #000;
 }
 
 *{
@@ -56,6 +57,37 @@ body{
     left: 5px;
     color: var(--color-white);
     /* font-family: monospace; */
+}
+
+.stars{
+    width: 100%;
+    height: 100vh;
+    background: var(--color-black);
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.star{
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--color-white);
+    border-radius: 50%;
+    animation: starMove linear infinite;
+}
+
+@keyframes starMove {
+    from {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(100vh) scale(1.5);
+        opacity: 0;
+    }
 }
 
 .logo-png{
